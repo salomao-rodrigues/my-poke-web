@@ -1,0 +1,1 @@
+export const LOAD_PLAYER_DATA = 'LOAD_PLAYER_DATA';

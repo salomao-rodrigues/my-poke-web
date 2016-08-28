@@ -1,19 +1,14 @@
-import services from '../services';
+import * as ActionTypes from '../constants/ActionTypes';
 
-const newState = {
-  pokemons: [
-    {
-      id: 1,
-      name: 'Bulbasaur'
-    },
-    {
-      id: 2,
-      name: 'Charmander'
-    }
-  ]
-};
+export const getPokemons = (state) => state.pokeweb.pokemon;
 
-const pokeweb = (state = newState, action) => {
+const pokeweb = (state = {}, action) => {
+  switch(action.type) {
+    case ActionTypes.LOAD_PLAYER_DATA:
+      return action.data;
+      break;
+  }
+
   return state;
 };
 
