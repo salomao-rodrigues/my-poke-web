@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import { LOAD_PLAYER_DATA } from '../constants/ActionTypes';
 
-export function loadPlayerData(apiUrl) {
+export function loadPlayerData(apiUrl, userToken) {
   return dispatch => {
     return fetch(apiUrl + '/get-data')
       .then(response => response.json())

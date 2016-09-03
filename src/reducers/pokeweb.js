@@ -2,7 +2,7 @@ import * as ActionTypes from '../constants/ActionTypes';
 
 export const getPokemons = (state) => state.pokeweb.pokemon;
 
-const pokeweb = (state = {}, action) => {
+export default function pokeweb(state = {}, action) {
   switch(action.type) {
     case ActionTypes.LOAD_PLAYER_DATA:
       return action.data;
@@ -10,6 +10,4 @@ const pokeweb = (state = {}, action) => {
   }
 
   return state;
-};
-
-export default pokeweb
+}

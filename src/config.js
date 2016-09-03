@@ -1,4 +1,2 @@
-export default {
-  apiUrl: process.env.API_URL || 'http://127.0.0.1:8081',
-  avatarURI: id => '/static/icons/'+(+id)+'.png'
-}
+export const apiUrl = process.env.API_URL || '//127.0.0.1:8081';
+export const avatarURI = (id) => '/static/icons/'+parseInt(id)+'.png';

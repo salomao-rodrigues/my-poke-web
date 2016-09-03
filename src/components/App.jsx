@@ -2,14 +2,13 @@ import React from 'react';
 import { withRouter, Link } from 'react-router';
 import { connect } from 'react-redux';
 
+import NavigationBar from './NavigationBar.jsx';
+
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <button type="submit">Auth with Google!</button>
-        <a href="https://goo.gl/HGebD9">Go to App!</a>
-        <br/>
-        <Link to={ '/pokemons' }>Pokemons</Link>
+      <div className="container">
+        <NavigationBar />
         {this.props.children}
       </div>
     );

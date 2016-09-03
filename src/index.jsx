@@ -8,9 +8,3 @@ render(
   <Root store={store} />,
   document.getElementById('root')
 )
-
-
-// <Router history={browserHistory}>
-//     <Route path="/" component={Home}>
-//     </Route>
-//   </Router>

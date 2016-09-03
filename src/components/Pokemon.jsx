@@ -1,5 +1,5 @@
 import React from 'react';
-import pokemons from '../helpers/pokemons';
+import pokemons from '../utils/pokemons';
 import config from '../config';
 
 class Pokemon extends React.Component {
