@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getPokemons } from '../reducers/pokeweb';
 import firstBy from 'thenby';
 
-import PokemonThumb from './PokemonThumb.jsx';
+import PokeThumbnail from './pokemon/Thumbnail.jsx';
 
 class Pokemons extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class Pokemons extends React.Component {
   renderPokemons(pokemons) {
     return pokemons.map(pokemon => {
       if (pokemon.pokemon_id) {
-        return <PokemonThumb key={pokemon.id} data={pokemon} />
+        return <PokeThumbnail key={pokemon.id} data={pokemon} />
       }
 
       return null;
