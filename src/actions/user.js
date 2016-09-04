@@ -1,12 +1,12 @@
-import fetch from 'isomorphic-fetch'
+import axios from 'axios';
+import { apiUrl } from '../config';
 import { LOAD_PLAYER_DATA } from '../constants/ActionTypes';
 
-export function loadPlayerData(apiUrl, userToken) {
+export function loadPlayerData(userToken) {
   return dispatch => {
-    return fetch(apiUrl + '/get-data')
+    return axios.post(apiUrl + '/api/get-data', userToken)
       .then(response => response.json())
       .then(json => {
-        console.log('got stuff!', json);
         dispatch({
           type: LOAD_PLAYER_DATA,
           data: json

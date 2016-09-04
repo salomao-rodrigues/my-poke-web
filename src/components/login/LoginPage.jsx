@@ -1,7 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import isEmpty from 'lodash/isEmpty';
 import LoginForm from './LoginForm';
 
 class LoginPage extends React.Component {
+  componentWillMount() {
+    this.props.isAuthenticated && this.context.router.push('/');
+  }
+
   render() {
     return (
       <div className="row">
@@ -13,4 +19,10 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: !isEmpty(state.auth.token)
+  };
+}
+
+export default connect(mapStateToProps)(LoginPage);

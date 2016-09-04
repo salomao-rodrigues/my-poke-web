@@ -13,7 +13,8 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={App}>
-        <IndexRoute component={LoginPage} />
+        <IndexRoute component={requireAuth(Pokemons)} />
+        <Route path='login' component={LoginPage} />
         <Route path='pokemons' component={requireAuth(Pokemons)} />
       </Route>
     </Router>

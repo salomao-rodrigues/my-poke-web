@@ -10,14 +10,14 @@ class Pokemons extends React.Component {
   constructor(props) {
     super(props);
 
-    this.orderPokemons(props.pokemons, props.orderBy);
+    this.sortPokemons(props.pokemons, props.orderBy);
   }
 
   /**
    * @todo make this user defined, not hardcoded
    */
-  orderPokemons(pokemons, property) {
-    pokemons.sort(
+  sortPokemons(pokemons, property) {
+    pokemons.length && pokemons.sort(
       firstBy((first, second) => first[property] - second[property])
       .thenBy((first, second) => second.cp - first.cp)
     );
@@ -37,6 +37,7 @@ class Pokemons extends React.Component {
     console.log(this.props);
     return (
       <div>
+        <h1>Pokemons</h1>
         {this.renderPokemons(this.props.pokemons)}
       </div>
     );
@@ -48,9 +49,8 @@ const mapStateToProps = (state) => ({
 });
 
 Pokemons.defaultProps = {
-  orderBy: 'pokemon_id'
+  orderBy: 'pokemon_id',
+  pokemons: []
 }
 
-Pokemons = withRouter(connect(mapStateToProps)(Pokemons));
-
-export default Pokemons;
+export default withRouter(connect(mapStateToProps)(Pokemons));

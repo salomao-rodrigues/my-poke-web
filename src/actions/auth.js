@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { apiUrl } from '../config';
-import setAuthorizationToken from '../utils/setAuthorizationToken';
+import { batchActions } from 'redux-batched-actions';
 import { SET_USER_TOKEN } from '../constants/ActionTypes';
+import { apiUrl } from '../config';
+import { loadPlayerData } from './user';
+import setAuthorizationToken from '../utils/setAuthorizationToken';
 
 export function setUserToken(token) {
   return {
@@ -24,7 +26,10 @@ export function login(data) {
       const token = res.data.token;
       localStorage.setItem('gToken', token);
       setAuthorizationToken(token);
-      dispatch(setUserToken(token));
+      dispatch(batchActions([
+        setUserToken(token),
+        loadPlayerData()
+      ]))
     });
   }
 }
