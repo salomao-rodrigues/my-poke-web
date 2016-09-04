@@ -1,6 +1,8 @@
 import * as ActionTypes from '../constants/ActionTypes';
 
-export const getPokemons = (state) => state.pokeweb.pokemon;
+export const getPokemons = (state) => {
+  return state.pokeweb.pokemon
+};
 
 export default function pokeweb(state = {}, action) {
   switch(action.type) {

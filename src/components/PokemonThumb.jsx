@@ -1,6 +1,6 @@
 import React from 'react';
 import pokemons from '../utils/pokemons';
-import config from '../config';
+import { avatarURI } from '../config';
 
 class Pokemon extends React.Component {
   calculateIv(data) {
@@ -16,10 +16,10 @@ class Pokemon extends React.Component {
   render() {
     const { id, cp, nickname, pokemon_id } = this.props.data;
     return (
-      <div className="pokemon" >
+      <div className="pokemon-thumb" >
         <img
           className="p-avatar"
-          src={config.avatarURI(pokemon_id)}
+          src={avatarURI(pokemon_id)}
           alt={JSON.stringify(this.props.data, null, 2)}
         />
         <div className="p-name">{pokemons[pokemon_id]}</div>

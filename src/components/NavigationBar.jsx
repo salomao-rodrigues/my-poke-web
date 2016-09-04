@@ -42,7 +42,6 @@ class NavigationBar extends React.Component {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     isAuthenticated: !isEmpty(state.auth.token)
   };

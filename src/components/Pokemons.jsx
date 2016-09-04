@@ -4,13 +4,17 @@ import { connect } from 'react-redux';
 import { getPokemons } from '../reducers/pokeweb';
 import firstBy from 'thenby';
 
-import Pokemon from './Pokemon.jsx';
+import PokemonThumb from './PokemonThumb.jsx';
 
 class Pokemons extends React.Component {
   constructor(props) {
     super(props);
 
     this.sortPokemons(props.pokemons, props.orderBy);
+  }
+
+  componentWillUpdate(nextProps) {
+    this.sortPokemons(nextProps.pokemons, nextProps.orderBy);
   }
 
   /**
@@ -26,7 +30,7 @@ class Pokemons extends React.Component {
   renderPokemons(pokemons) {
     return pokemons.map(pokemon => {
       if (pokemon.pokemon_id) {
-        return <Pokemon key={pokemon.id} data={pokemon} />
+        return <PokemonThumb key={pokemon.id} data={pokemon} />
       }
 
       return null;
@@ -34,7 +38,6 @@ class Pokemons extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h1>Pokemons</h1>
