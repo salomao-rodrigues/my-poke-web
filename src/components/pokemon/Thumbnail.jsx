@@ -55,7 +55,7 @@ class Pokemon extends React.Component {
         />
         <div className="p-name">{getName(pokemon_id)}</div>
         <div className="p-cp">{cp}</div>
-        <div className="p-iv">IV - {this.calculateIv(this.props.data)}%</div>
+        <span className="badge">{this.calculateIv(this.props.data)}%</span>
       </div>
     );
   }

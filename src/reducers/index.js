@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
-import pokeweb from './pokeweb';
+import candies from './candies';
+import pokedex from './pokedex';
+import pokemon from './pokemon';
 
 const rootReducer = combineReducers({
   auth,
-  pokeweb
+  candies,
+  pokedex,
+  pokemon
 })
 
 export default rootReducer;

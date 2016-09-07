@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { getPokemons } from '../reducers/pokeweb';
 import firstBy from 'thenby';
 
 import PokeThumbnail from './pokemon/Thumbnail.jsx';
@@ -48,7 +47,7 @@ class Pokemons extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  pokemons: getPokemons(state)
+  pokemons: state.pokemon
 });
 
 Pokemons.defaultProps = {
