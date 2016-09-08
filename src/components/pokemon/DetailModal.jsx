@@ -23,6 +23,7 @@ class DetailModal extends React.Component {
 
   render() {
     const p = this.props.pokemon;
+    const { candies } = this.props;
 
     return (
       <Modal
@@ -41,6 +42,7 @@ class DetailModal extends React.Component {
         <ul>
           <li>CP - {p.cp}</li>
           <li>IV - {getIV(p.individual_attack, p.individual_defense, p.individual_stamina)}%</li>
+          <li>Candies - { candies }</li>
           <li>Move 1 - {getMoveName(p['move_1'])}</li>
           <li>Move 2 - {getMoveName(p['move_2'])}</li>
         </ul>
@@ -63,4 +65,8 @@ class DetailModal extends React.Component {
   }
 }
 
-export default connect(null, { release })(DetailModal);
+const mapStateToProps = ({ candies }, { pokemon }) => ({
+  candies: candies[pokemon.pokemon_id] && candies[pokemon.pokemon_id].candy
+});
+
+export default connect(mapStateToProps, { release })(DetailModal);
