@@ -3,12 +3,17 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 
+import { addFlashMessage } from '../actions/flashMessages.js';
 import { logout } from '../actions/auth';
 
 class NavigationBar extends React.Component {
   logout(e) {
     e.preventDefault();
     this.props.logout();
+    this.props.addFlashMessage({
+      type: 'success',
+      text: 'You have just logged out.'
+    });
   }
 
   render() {
@@ -47,4 +52,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logout })(NavigationBar);
+export default connect(mapStateToProps, { logout, addFlashMessage })(NavigationBar);

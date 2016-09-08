@@ -1,16 +1,21 @@
 import axios from 'axios';
 import { apiUrl } from '../config';
-import { LOAD_PLAYER_DATA } from '../constants/ActionTypes';
 import { loadPlayerData } from './user';
+import { addFlashMessage } from './flashMessages';
 
-export function release(pokemonId) {
+export function release(pokemonId, pokemonName = '') {
   return dispatch => {
     return axios.post(apiUrl + '/api/pokemon/release', {
       token: localStorage.getItem('gToken'),
       pokemonId
-    }).then(response => {
+    }).then(({ data }) => {
       //@todo: Don't call api again, just update state
         loadPlayerData(localStorage.getItem('gToken'));
+        dispatch(addFlashMessage({
+            type: 'success',
+            text: 'You got ' + data.candy_awarded + ' ' + pokemonName + ' candy'
+          })
+        );
       });
   };
 };

@@ -7,6 +7,9 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var config = {
   entry: path.join(__dirname, './src/index.jsx'),
+  devServer: {
+    historyApiFallback: true
+  },
   output: {
     path: path.join(__dirname, './build/'),
     filename: 'app.bundle.js'

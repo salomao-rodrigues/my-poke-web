@@ -16,8 +16,10 @@ class DetailModal extends React.Component {
   }
 
   confirmRelease() {
+    const { release, pokemon } = this.props;
+
     if (confirm("Transfer for candy?")) { 
-      this.props.release(this.props.pokemon.id)
+      release(pokemon.id, getName(pokemon.pokemon_id));
     }
   }
 
