@@ -8,7 +8,7 @@
     "url": "https://github.com/salomao-rodrigues/my-poke-web"
   },
   "scripts": {
-    "start": "webpack-dev-server --progress --colors",
+    "start": "node server.js",
     "postinstall": "webpack --progress --colors",
     "webpack:watch": "webpack -d --watch",
     "webpack:build": "webpack -p",
