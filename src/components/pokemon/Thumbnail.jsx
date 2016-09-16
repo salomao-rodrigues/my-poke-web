@@ -54,7 +54,7 @@ class Pokemon extends React.Component {
           src={pokedexEntry.img}
           alt={JSON.stringify(this.props.data, null, 2)}
         />
-        <div className="p-name">{pokedex[pokemon_id].name}</div>
+        <div className="p-name">{nickname || pokedex[pokemon_id].name}</div>
         <div className="p-cp">{cp}</div>
         <span className="badge">{this.calculateIv(this.props.data)}%</span>
       </div>
