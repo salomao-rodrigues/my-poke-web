@@ -1,10 +1,10 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
-import { avatarURI } from '../../config';
+import pokedex from '../../utils/pokedex.json';
 import { getIV, getName } from '../../utils';
 import { getMoveName } from '../../utils';
-import { release } from '../../actions/pokemon';
+import { release, evolve } from '../../actions/pokemon';
 
 class DetailModal extends React.Component {
   constructor(props) {
@@ -13,19 +13,35 @@ class DetailModal extends React.Component {
     this.state = { modalIsOpen: true };
 
     this.confirmRelease = this.confirmRelease.bind(this);
+    this.confirmEvolve = this.confirmEvolve.bind(this);
   }
 
   confirmRelease() {
     const { release, pokemon } = this.props;
 
-    if (confirm("Transfer for candy?")) { 
+    if (confirm('Transfer for candy?')) {
+      this.setState({
+        modalIsOpen: false
+      });
       release(pokemon.id, getName(pokemon.pokemon_id));
+    }
+  }
+
+  confirmEvolve() {
+    const { evolve, pokemon } = this.props;
+
+    if (confirm('Evolve pokemon?')) {
+      this.setState({
+        modalIsOpen: false
+      });
+      evolve(pokemon.id, getName(pokemon.pokemon_id));
     }
   }
 
   render() {
     const p = this.props.pokemon;
     const { candies } = this.props;
+    const pokedexEntry = pokedex[p.pokemon_id];
 
     return (
       <Modal
@@ -38,7 +54,7 @@ class DetailModal extends React.Component {
         <h1>{ p.nickname || getName(p.pokemon_id)}</h1>
         <img
           className="p-avatar"
-          src={avatarURI(p.pokemon_id)}
+          src={pokedexEntry.img}
           alt={JSON.stringify(this.props.data, null, 2)}
         />
         <ul>
@@ -58,9 +74,8 @@ class DetailModal extends React.Component {
         <button
           type="button"
           className="btn btn-info"
-          onClick={this.confirmRelease}
-          disabled="true">
-          Upgrade
+          onClick={this.confirmEvolve}>
+          Evolve
         </button>
       </Modal>
     );
@@ -71,4 +86,4 @@ const mapStateToProps = ({ candies }, { pokemon }) => ({
   candies: candies[pokemon.pokemon_id] && candies[pokemon.pokemon_id].candy
 });
 
-export default connect(mapStateToProps, { release })(DetailModal);
+export default connect(mapStateToProps, { release, evolve })(DetailModal);

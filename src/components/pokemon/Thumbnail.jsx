@@ -1,6 +1,5 @@
 import React from 'react';
-import { getName } from '../../utils';
-import { avatarURI } from '../../config';
+import pokedex from '../../utils/pokedex.json';
 
 import DetailModal from './DetailModal.jsx';
 
@@ -45,15 +44,17 @@ class Pokemon extends React.Component {
 
   render() {
     const { id, cp, nickname, pokemon_id } = this.props.data;
+    const pokedexEntry = pokedex[pokemon_id];
+
     return (
       <div className="pokemon-thumb" onClick={this.showDetails.bind(this)}>
         {this.state.showDetails && this.renderDetails(this.props.data, this.hideDetails)}
         <img
           className="p-avatar"
-          src={avatarURI(pokemon_id)}
+          src={pokedexEntry.img}
           alt={JSON.stringify(this.props.data, null, 2)}
         />
-        <div className="p-name">{getName(pokemon_id)}</div>
+        <div className="p-name">{pokedex[pokemon_id].name}</div>
         <div className="p-cp">{cp}</div>
         <span className="badge">{this.calculateIv(this.props.data)}%</span>
       </div>

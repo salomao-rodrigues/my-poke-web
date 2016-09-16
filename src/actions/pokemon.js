@@ -19,3 +19,19 @@ export function release(pokemonId, pokemonName = '') {
       });
   };
 };
+
+export function evolve(pokemonId, pokemonName = '') {
+  return dispatch => {
+    return axios.post(apiUrl + '/api/pokemon/evolve', {
+      token: localStorage.getItem('gToken'),
+      pokemonId
+    }).then(({ data }) => {
+        loadPlayerData(localStorage.getItem('gToken'));
+        dispatch(addFlashMessage({
+            type: 'success',
+            text: 'You got ' + data.experience_awarded + 'xp and ' + data.candy_awarded + ' candies back'
+          })
+        );
+      });
+  };
+};
