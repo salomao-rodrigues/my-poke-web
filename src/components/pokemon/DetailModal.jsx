@@ -2,8 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import pokedex from '../../utils/pokedex.json';
-import { getIV, getName } from '../../utils';
-import { getMoveName } from '../../utils';
+import { getCandiesByPokemon, getIV, getMoveName } from '../../utils';
 import { release, evolve } from '../../actions/pokemon';
 
 class DetailModal extends React.Component {
@@ -23,7 +22,7 @@ class DetailModal extends React.Component {
       this.setState({
         modalIsOpen: false
       });
-      release(pokemon.id, getName(pokemon.pokemon_id));
+      release(pokemon.id, pokedex[pokemon.pokemon_id].name);
     }
   }
 
@@ -34,7 +33,7 @@ class DetailModal extends React.Component {
       this.setState({
         modalIsOpen: false
       });
-      evolve(pokemon.id, getName(pokemon.pokemon_id));
+      evolve(pokemon.id, pokedex[pokemon.pokemon_id].name);
     }
   }
 
@@ -51,7 +50,7 @@ class DetailModal extends React.Component {
         onRequestClose={this.props.onRequestClose}
         className="detail-modal"
       >
-        <h1>{ p.nickname || getName(p.pokemon_id)}</h1>
+        <h1>{ p.nickname || pokedex[p.pokemon_id].name}</h1>
         <img
           className="p-avatar"
           src={pokedexEntry.img}
@@ -83,7 +82,7 @@ class DetailModal extends React.Component {
 }
 
 const mapStateToProps = ({ candies }, { pokemon }) => ({
-  candies: candies[pokemon.pokemon_id] && candies[pokemon.pokemon_id].candy
+  candies: getCandiesByPokemon(candies, pokemon.pokemon_id)
 });
 
 export default connect(mapStateToProps, { release, evolve })(DetailModal);
