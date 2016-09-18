@@ -4016,6 +4016,12 @@
       "Dragon",
       "Fairy"
     ],
+    "prev_evolution":[
+      {
+        "num":"147",
+        "name":"Dratini"
+      }
+    ],
     "next_evolution":[
       {
         "num":"149",
@@ -4044,6 +4050,10 @@
       "Fairy"
     ],
     "prev_evolution":[
+      {
+        "num":"147",
+        "name":"Dratini"
+      },
       {
         "num":"148",
         "name":"Dragonair"

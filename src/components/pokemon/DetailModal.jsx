@@ -37,6 +37,23 @@ class DetailModal extends React.Component {
     }
   }
 
+  renderEvolutionSection(candiesNeeded, candiesGotten) {
+    const hasEnoughCandies = candiesNeeded <= candiesGotten;
+    const className = 'btn ' + (hasEnoughCandies ? 'btn-info' : 'btn-default');
+
+    return <p className="p-evolve">
+      <button
+        type="button"
+        className={className}
+        onClick={this.confirmEvolve}
+        disabled={!hasEnoughCandies}
+      >
+        Evolve
+      </button>
+      <span>&nbsp;{candiesNeeded}&nbsp;/&nbsp;{candiesGotten}&nbsp;candies</span>
+    </p>
+  }
+
   render() {
     const p = this.props.pokemon;
     const { candies } = this.props;
@@ -50,7 +67,7 @@ class DetailModal extends React.Component {
         onRequestClose={this.props.onRequestClose}
         className="detail-modal"
       >
-        <h1>{ p.nickname || pokedex[p.pokemon_id].name}</h1>
+        <h1>{ p.nickname || pokedexEntry.name}</h1>
         <img
           className="p-avatar"
           src={pokedexEntry.img}
@@ -59,22 +76,15 @@ class DetailModal extends React.Component {
         <ul>
           <li>CP - {p.cp}</li>
           <li>IV - {getIV(p.individual_attack, p.individual_defense, p.individual_stamina)}%</li>
-          <li>Candies - { candies }</li>
-          <li>Move 1 - {getMoveName(p['move_1'])}</li>
-          <li>Move 2 - {getMoveName(p['move_2'])}</li>
+          <li>Move 1 - {getMoveName(p.move_1)}</li>
+          <li>Move 2 - {getMoveName(p.move_2)}</li>
         </ul>
-        <pre><h5>{JSON.stringify(this.props, null, 2)}</h5></pre>
+        { pokedexEntry.candy_count && this.renderEvolutionSection(pokedexEntry.candy_count, candies) }
         <button
           type="button"
-          className="btn btn-warning"
+          className="btn btn-danger"
           onClick={this.confirmRelease}>
           Transfer
-        </button>
-        <button
-          type="button"
-          className="btn btn-info"
-          onClick={this.confirmEvolve}>
-          Evolve
         </button>
       </Modal>
     );
