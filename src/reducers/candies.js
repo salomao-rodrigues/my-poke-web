@@ -7,7 +7,7 @@ const mapCandiesToObject = candies => {
   }, {});
 };
 
-export default function candy(state = [], action) {
+export default function candy(state = {}, action) {
   switch(action.type) {
     case ActionTypes.LOAD_PLAYER_DATA:
       return mapCandiesToObject(action.data.candies);
