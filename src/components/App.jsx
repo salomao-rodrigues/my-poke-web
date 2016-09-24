@@ -8,10 +8,12 @@ import FlashMessagesList from './flash/FlashMessagesList.jsx';
 class App extends React.Component {
   render() {
     return (
-      <div className="container">
-        <NavigationBar />
+      <div>
+        <div className="container">
+          <NavigationBar />
+          {this.props.children}
+        </div>
         <FlashMessagesList />
-        {this.props.children}
       </div>
     );
   }

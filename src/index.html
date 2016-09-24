@@ -71,6 +71,22 @@
         background: rgb(255, 255, 255); 
         outline: none;
       }
+
+      .flash-messages {
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        top: 52px;
+        margin: auto;
+      }
+
+      .flash-messages .alert {
+        display: inline-block;
+      }
+
+      .flash-messages > div {
+        transition: opacity 250ms;
+      }
     </style>
   </head>
   <body>

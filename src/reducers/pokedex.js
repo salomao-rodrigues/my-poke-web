@@ -7,7 +7,7 @@ const mapPokedexToObject = pokedex => {
   }, {});
 };
 
-export default function pokedex(state = {}, action) {
+export default function pokedex(state = {}, action = {}) {
   switch(action.type) {
     case ActionTypes.LOAD_PLAYER_DATA:
       return mapPokedexToObject(action.data.pokedex);
