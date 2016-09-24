@@ -43,7 +43,7 @@ class Pokemon extends React.Component {
   }
 
   render() {
-    const { id, cp, nickname, pokemon_id } = this.props.data;
+    const { cp, nickname, pokemon_id } = this.props.data;
     const pokedexEntry = pokedex[pokemon_id];
 
     return (

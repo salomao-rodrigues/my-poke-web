@@ -15,13 +15,23 @@ export function getMoveName(id) {
   return moveToString(id);
 }
 
-export function getCandiesByPokemon(candies, id) {
-  const { prev_evolution } = pokedex[id];
-  
+export function getFamilyId(pokedexId) {
+  const { prev_evolution } = pokedex[pokedexId];
+
   if (prev_evolution) {
-    const base = parseInt(prev_evolution[0].num);
-    return candies[base].candy
+    return parseInt(prev_evolution[0].num);
   }
 
-  return candies[id].candy;
+  return pokedexId;
+}
+
+export function getCandiesByPokemon(candies, id) {
+  return candies[getFamilyId(id)].candy;
+}
+
+export function mapArrayToObject(arr, key) {
+  return arr.reduce((mapped, value) => {
+    mapped[value[key]] = value;
+    return mapped;
+  }, {});
 }

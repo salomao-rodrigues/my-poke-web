@@ -6,30 +6,26 @@ import firstBy from 'thenby';
 import PokeThumbnail from './pokemon/Thumbnail.jsx';
 
 class Pokemons extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.sortPokemons(props.pokemons, props.orderBy);
-  }
-
-  componentWillUpdate(nextProps) {
-    this.sortPokemons(nextProps.pokemons, nextProps.orderBy);
-  }
-
   /**
    * @todo make this user defined, not hardcoded
    */
-  sortPokemons(pokemons, property) {
-    pokemons.length && pokemons.sort(
-      firstBy((first, second) => first[property] - second[property])
-      .thenBy((first, second) => second.cp - first.cp)
+  sortKeys(pokemons, property) {
+    const keys = Object.keys(pokemons);
+
+    keys.length && keys.sort(
+      firstBy((first, second) => pokemons[first][property] - pokemons[second][property])
+      .thenBy((first, second) => pokemons[second].cp - pokemons[first].cp)
     );
+
+    return keys;
   }
 
   renderPokemons(pokemons) {
-    return pokemons.map(pokemon => {
-      if (pokemon.pokemon_id) {
-        return <PokeThumbnail key={pokemon.id} data={pokemon} />
+    const sorted = this.sortKeys(pokemons, this.props.orderBy);
+
+    return sorted.map(id => {
+      if (pokemons[id].pokemon_id) {
+        return <PokeThumbnail key={id} data={pokemons[id]} />
       }
 
       return null;
@@ -40,7 +36,7 @@ class Pokemons extends React.Component {
     return (
       <div>
         <h1>Pokemons</h1>
-        {this.renderPokemons(this.props.pokemons)}
+        {this.renderPokemons.call(this, this.props.pokemons)}
       </div>
     );
   }
@@ -52,7 +48,7 @@ const mapStateToProps = (state) => ({
 
 Pokemons.defaultProps = {
   orderBy: 'pokemon_id',
-  pokemons: []
+  pokemons: {}
 }
 
 export default withRouter(connect(mapStateToProps)(Pokemons));

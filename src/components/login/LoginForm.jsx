@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { errors, identifier, password, isLoading } = this.state;
+    const { errors, isLoading } = this.state;
 
     return (
       <form onSubmit={this.onSubmit} className="form-signin">
