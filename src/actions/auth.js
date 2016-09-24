@@ -23,6 +23,7 @@ export function login(data) {
   return dispatch => {
     return axios.post(apiUrl + '/api/auth/login', data).then(res => {
       const token = res.data.token;
+
       localStorage.setItem('gToken', token);
       setAuthorizationToken(token);
       dispatch(setUserToken(token));
