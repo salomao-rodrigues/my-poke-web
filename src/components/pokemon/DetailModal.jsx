@@ -22,7 +22,8 @@ class DetailModal extends React.Component {
       this.setState({
         modalIsOpen: false
       });
-      release(pokemon.id, pokedex[pokemon.pokemon_id].name);
+
+      release(pokemon.id, pokemon.pokemon_id);
     }
   }
 
@@ -58,6 +59,7 @@ class DetailModal extends React.Component {
     const p = this.props.pokemon;
     const { candies } = this.props;
     const pokedexEntry = pokedex[p.pokemon_id];
+    const iv = getIV(p.individual_attack, p.individual_defense, p.individual_stamina);
 
     return (
       <Modal
@@ -67,7 +69,7 @@ class DetailModal extends React.Component {
         onRequestClose={this.props.onRequestClose}
         className="detail-modal"
       >
-        <h1>{ p.nickname || pokedexEntry.name}</h1>
+        <h1>{ p.nickname || pokedexEntry.name }</h1>
         <img
           className="p-avatar"
           src={pokedexEntry.img}
@@ -75,7 +77,7 @@ class DetailModal extends React.Component {
         />
         <ul>
           <li>CP - {p.cp}</li>
-          <li>IV - {getIV(p.individual_attack, p.individual_defense, p.individual_stamina)}%</li>
+          <li>IV - {iv}%</li>
           <li>Move 1 - {getMoveName(p.move_1)}</li>
           <li>Move 2 - {getMoveName(p.move_2)}</li>
         </ul>

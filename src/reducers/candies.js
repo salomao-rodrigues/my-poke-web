@@ -1,4 +1,5 @@
 import * as ActionTypes from '../constants/ActionTypes';
+import { mapArrayToObject } from '../utils';
 
 const mapCandiesToObject = candies => {
   return candies.reduce((newCandies, candy) => {
@@ -10,7 +11,7 @@ const mapCandiesToObject = candies => {
 export default function candy(state = {}, action) {
   switch(action.type) {
     case ActionTypes.LOAD_PLAYER_DATA:
-      return mapCandiesToObject(action.data.candies);
+      return mapArrayToObject(action.data.candies, 'family_id');
   }
 
   return state;
