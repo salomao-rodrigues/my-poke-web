@@ -1,11 +1,7 @@
 import { SET_USER_TOKEN } from '../constants/ActionTypes';
 import isEmpty from 'lodash/isEmpty';
 
-const initialState = {
-  token: null
-};
-
-export default (state = initialState, action = {}) => {
+export default (state = {}, action = {}) => {
   switch(action.type) {
     case SET_USER_TOKEN:
       return {

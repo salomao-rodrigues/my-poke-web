@@ -3,7 +3,7 @@ import { mapArrayToObject } from '../utils';
 import omit from 'lodash/omit';
 import defaultsDeep from 'lodash/defaultsdeep';
 
-export default function pokemon(state = {}, action) {
+export default function pokemon(state = {}, action = {}) {
   switch(action.type) {
     case ActionTypes.LOAD_PLAYER_DATA:
       return mapArrayToObject(action.data.pokemon, 'id');

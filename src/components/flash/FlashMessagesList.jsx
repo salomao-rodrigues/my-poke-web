@@ -6,10 +6,15 @@ import { deleteFlashMessage } from '../../actions/flashMessages';
 class FlashMessagesList extends React.Component {
   render() {
     const messages = this.props.messages.map(message =>
-      <FlashMessage key={message.id} message={message} deleteFlashMessage={this.props.deleteFlashMessage} />
+      <FlashMessage
+        key={message.id}
+        message={message} 
+        deleteFlashMessage={this.props.deleteFlashMessage}
+        timeout={4000}
+      />
     );
     return (
-      <div>{messages}</div>
+      <div className="flash-messages">{messages}</div>
     );
   }
 }
