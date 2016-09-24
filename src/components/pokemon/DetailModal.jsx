@@ -23,7 +23,7 @@ class DetailModal extends React.Component {
         modalIsOpen: false
       });
 
-      release(pokemon.id, pokemon.pokemon_id);
+      release(pokemon);
     }
   }
 
@@ -34,7 +34,8 @@ class DetailModal extends React.Component {
       this.setState({
         modalIsOpen: false
       });
-      evolve(pokemon.id, pokedex[pokemon.pokemon_id].name);
+
+      evolve(pokemon);
     }
   }
 
