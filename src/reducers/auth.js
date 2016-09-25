@@ -1,5 +1,4 @@
 import { SET_USER_TOKEN } from '../constants/ActionTypes';
-import isEmpty from 'lodash/isEmpty';
 
 export default (state = {}, action = {}) => {
   switch(action.type) {
